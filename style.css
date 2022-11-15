@@ -1,0 +1,117 @@
+body {
+  font-family:Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background: rgb(52, 52, 52);
+}
+
+#calcbody {
+  display: flex;
+  flex-direction: column;
+  background: rgb(153, 153, 153);
+  height: 410px;
+  width: 300px;
+  border: 1.5px solid black;
+  border-color: rgb(0, 0, 0);
+  border-radius: 8px;
+}
+
+#section-one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  margin: 15px;
+  margin-bottom: 10px;
+}
+
+#section-two {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  margin: 0 15px;
+  padding: 0px;
+}
+
+.screen {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  height: 80px;
+  width: 300px;
+  background: white;
+  border: 1.5px solid black;
+  border-radius: 4px;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin: 15px;
+  height: 40px;
+  width: 100px;
+  font-size: 32px;
+}
+
+.clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 130px;
+  margin-right: 5px;
+  border: 1.5px solid black;
+  border-radius: 4px;
+  background: rgb(247, 117, 117)
+}
+
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 130px;
+  margin-left: 5px;
+  border: 1.5px solid black;
+  border-radius: 4px;
+  background: rgb(92, 92, 255)
+}
+
+#section-three { 
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 7.5px;
+  margin-left: 10px;
+}
+
+.seven,
+.eight,
+.nine,
+.divide,
+.four,
+.five,
+.six,
+.multiply,
+.one,
+.two,
+.three,
+.subtract,
+.period,
+.zero,
+.equals,
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 60px;
+  margin: 5px;
+  border: 1.5px solid black;
+  border-radius: 4px;
+  background: lightgray;
+}
