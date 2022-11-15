@@ -7,18 +7,10 @@ let swtch = ''
 const screen = document.querySelector('.screen');
 const display = document.createElement('div');
 display.classList.add('display');
-display.textContent = "";
 screen.appendChild(display);
 
 const clear = document.querySelector('.clear')
-clear.addEventListener('click', () => {
-  intArray.splice(0)
-  first.splice(0)
-  second.splice(0)
-  oper = ''
-  swtch = ''
-  display.textContent = ''
-})
+clear.addEventListener('click', () => clrCalc())
 
 const zero = document.querySelector('.zero')
 zero.addEventListener('click', () => {
@@ -83,7 +75,6 @@ six.addEventListener('click', () => {
   swtch = ''
 })
   
-
 const seven = document.querySelector('.seven')
 seven.addEventListener('click', () => {
   if (swtch === 'on')
@@ -93,7 +84,6 @@ seven.addEventListener('click', () => {
   swtch = ''
 })
   
-
 const eight = document.querySelector('.eight')
 eight.addEventListener('click', () => {
   if (swtch === 'on')
@@ -165,6 +155,14 @@ function calc() {
   first.splice(0)
   second.splice(0)
   intArray.splice(0)  
+}
+function clrCalc() {
+  intArray.splice(0)
+  first.splice(0)
+  second.splice(0)
+  oper = ''
+  swtch = ''
+  display.textContent = ''
 }
 function add(a, b) { return a + b }
 function subtract(a, b) { return a - b }
