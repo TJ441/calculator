@@ -1,7 +1,8 @@
 let intArray = [];
-let firstNum = [];
-let secondNum = [];
-let oper = [];
+let first = [];
+let second = [];
+let oper = ''
+let swtch = ''
 
 const screen = document.querySelector('.screen');
 const display = document.createElement('div');
@@ -9,55 +10,107 @@ display.classList.add('display');
 display.textContent = "";
 screen.appendChild(display);
 
+const clear = document.querySelector('.clear')
+clear.addEventListener('click', () => {
+  intArray.splice(0)
+  first.splice(0)
+  second.splice(0)
+  oper = ''
+  swtch = ''
+  display.textContent = ''
+})
+
 const zero = document.querySelector('.zero')
 zero.addEventListener('click', () => {
-    display.textContent += "0";
-    intArray.unshift(0)});
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "0";
+  intArray.push(0)
+  swtch = ''
+})
 
 const one = document.querySelector('.one')
 one.addEventListener('click', () => {
-    display.textContent += "1"
-    intArray.unshift(1)});
+  if (swtch === 'on')
+    display.textContent = ''   
+  display.textContent += "1"
+  intArray.push(1)
+  swtch = ''
+})
 
 const two = document.querySelector('.two')
 two.addEventListener('click', () => {
-    display.textContent += "2"
-    intArray.unshift(2)});
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "2"
+  intArray.push(2)
+  swtch = ''
+})
 
 const three = document.querySelector('.three')
 three.addEventListener('click', () => {
-    display.textContent += "3"
-    intArray.unshift(3)});
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "3"
+  intArray.push(3)
+  swtch = ''
+})
 
 const four = document.querySelector('.four')
 four.addEventListener('click', () => {
-    display.textContent += "4"
-    intArray.unshift(4)});
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "4"
+  intArray.push(4)
+  swtch = ''
+})
 
 const five = document.querySelector('.five')
 five.addEventListener('click', () => {
-    display.textContent += "5"
-    intArray.unshift(5)});
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "5"
+  intArray.push(5)
+  swtch = ''
+})
 
 const six = document.querySelector('.six')
 six.addEventListener('click', () => {
-    display.textContent += "6"
-    intArray.unshift(6)});
+  if (swtch === 'on')
+    display.textContent = ''  
+  display.textContent += "6"
+  intArray.push(6)
+  swtch = ''
+})
+  
 
 const seven = document.querySelector('.seven')
 seven.addEventListener('click', () => {
-    display.textContent += "7"
-    intArray.unshift(7)});
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "7"
+  intArray.push(7)
+  swtch = ''
+})
+  
 
 const eight = document.querySelector('.eight')
 eight.addEventListener('click', () => {
-    display.textContent += "8"
-    intArray.unshift(8)});
-
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "8"
+  intArray.push(8)
+  swtch = ''
+})
+  
 const nine = document.querySelector('.nine')
 nine.addEventListener('click', () => {
-    display.textContent += "9"
-    intArray.unshift(9)});
+  if (swtch === 'on')
+    display.textContent = ''
+  display.textContent += "9"
+  intArray.push(9)
+  swtch = ''
+})
 
 const quotient = document.querySelector('.divide');
 quotient.addEventListener('click', () => divideBtn());
@@ -74,49 +127,43 @@ sum.addEventListener('click', () => addBtn());
 const equals = document.querySelector('.equals');
 equals.addEventListener('click', () => calc());
 
-function operate(num1, num2, op) {
+function operate(num1, num2, oper) {
   let [a] = num1, [b] = num2;
-  let [oper] = op;
   if (oper === '+') return add(a, b)
   if (oper === '-') return subtract(a, b)
   if (oper === '*') return multiply(a, b)
   if (oper === '/') return divide(a, b)
 }
 function divideBtn() {
-  firstNum.push(intArray.reverse()
-                        .join('') * 1);
+  first.push(intArray.join('')*1);
   intArray.splice(0);
-  oper.splice(0,1,'/')
-  display.textContent = ''
+  oper = '/'
+  swtch = 'on'
 }
 function multiplyBtn() {
-  firstNum.push(intArray.reverse()
-                        .join('') * 1);
+  first.push(intArray.join('')*1);
   intArray.splice(0);
-  oper.splice(0,1,'*')
-  display.textContent = ''
+  oper = '*'
+  swtch = 'on'
 }
 function subtractBtn() {
-  firstNum.push(intArray.reverse()
-                        .join('') * 1);
+  first.push(intArray.join('')*1);
   intArray.splice(0);    
-  oper.splice(0,1,'-')
-  display.textContent = ''
+  oper = '-'
+  swtch = 'on'
 }
 function addBtn() {
-  firstNum.push(intArray.reverse()
-                        .join('') * 1);
+  first.push(intArray.join('')*1);
   intArray.splice(0);
-  oper.splice(0,1,'+')
-  display.textContent = ''
+  oper = '+'
+  swtch = 'on'
 }
 function calc() {
-  secondNum.push(intArray.reverse()
-                         .join('') * 1)
-  result = operate(firstNum, secondNum, oper)
+  second.push(intArray.join('')*1)
+  result = operate(first, second, oper)
   display.textContent = result;
-  firstNum.splice(0)
-  secondNum.splice(0)
+  first.splice(0)
+  second.splice(0)
   intArray.splice(0)  
 }
 function add(a, b) { return a + b }
