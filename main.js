@@ -54,6 +54,7 @@ sum.addEventListener('click', () => addBtn());
 const equals = document.querySelector('.equals');
 equals.addEventListener('click', () => calc(eventArr, oper));
 
+
 function numBtn(num){
   if (typeof eventArr[eventArr.length - 1] !== 'number')
     display.textContent = ''
@@ -63,7 +64,13 @@ function numBtn(num){
 function divideBtn() {
   if (oper) {
     calc(eventArr, oper);
+    eventArr.splice(1)
     oper = '/';
+  } else if ((!oper) && (eventArr.includes('*')
+                      || eventArr.includes('/')
+                      || eventArr.includes('-')
+                      || eventArr.includes('+'))) {
+    eventArr.splice(1)
   }
   eventArr.push('/');
   oper = '/';
@@ -71,7 +78,13 @@ function divideBtn() {
 function multiplyBtn() {
   if (oper) {
     calc(eventArr, oper);
+    eventArr.splice(1)
     oper = '*';
+  } else if (!oper && (eventArr.includes('*')
+                    || eventArr.includes('/')
+                    || eventArr.includes('-')
+                    || eventArr.includes('+'))) {
+    eventArr.splice(1)
   }
   eventArr.push('*');
   oper = '*';
@@ -79,7 +92,13 @@ function multiplyBtn() {
 function subtractBtn() {
   if (oper) {
     calc(eventArr, oper);
+    eventArr.splice(1)
     oper = '-';
+  } else if (!oper && (eventArr.includes('*')
+                    || eventArr.includes('/')
+                    || eventArr.includes('-')
+                    || eventArr.includes('+'))) {
+    eventArr.splice(1)
   }
   eventArr.push('-');
   oper = '-';
@@ -87,12 +106,19 @@ function subtractBtn() {
 function addBtn() {
   if (oper) {
     calc(eventArr, oper);
+    eventArr.splice(1)
     oper = '+';
+  } else if (!oper && (eventArr.includes('*')
+                    || eventArr.includes('/')
+                    || eventArr.includes('-')
+                    || eventArr.includes('+'))) {
+  eventArr.splice(1)
   }
   eventArr.push('+');
   oper = '+';
 }
 function calc(arr, op) {
+  if (!op) op = eventArr[1]
   let index = arr.indexOf(op)
   let first = arr.slice(0, index).join('')*1
   let second = arr.slice(index + 1).join('')*1
@@ -104,8 +130,15 @@ function calc(arr, op) {
   if (op === '+') result = first + second;
   
   display.textContent = result;
-  eventArr.splice(0)
-  eventArr.push(result)
+  eventArr.splice(0, index)
+  console.log(eventArr)
+  eventArr.unshift(result)
+  console.log(eventArr)
   oper = ''
 }
-console.log(eventArr)
+
+function clrCalc() {
+  display.textContent = ''
+  eventArr.splice(0)
+  oper = ''
+}
