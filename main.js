@@ -1,8 +1,8 @@
 let first = ''
 let second = ''
 let oper = ''
-let contSecond = ''
-let contOp = ''
+let repeatOp = ''
+let repeatSecond = ''
 
 const screen = document.querySelector('.screen');
 const display = document.createElement('div');
@@ -11,6 +11,9 @@ screen.appendChild(display);
 
 const clear = document.querySelector('.clear')
 clear.addEventListener('click', () => clrCalc())
+
+const backspace = document.querySelector('.delete')
+backspace.addEventListener('click', () => backSpace())
 
 const zero = document.querySelector('.zero')
 zero.addEventListener('click', () => numBtn(0))
@@ -64,6 +67,9 @@ sum.addEventListener('click', () => operBtn('+'));
 const diff = document.querySelector('.subtract');
 diff.addEventListener('click', () => operBtn('-'));
 
+const negative = document.querySelector('.negative');
+negative.addEventListener('click', () => makeNeg());
+
 const decimal = document.querySelector('.period');
 decimal.addEventListener('click', () => numBtn('.'))
 decimal.addEventListener('click', () => numDisplay('.'))
@@ -86,9 +92,20 @@ function numDisplay(num) {
 }
 
 function operBtn(op) {
+  display.textContent += op
   if (oper) solve(first, oper, second)
-  contSecond = ''
+  repeatSecond = ''
   oper += op
+}
+
+function equalBtn() {
+  if (!oper && !repeatOp) display.textContent = first
+  else if (first && oper && !second) {
+    second = first
+    solve(first, oper, second)
+  }
+  else if (!second) solve(first, repeatOp, repeatSecond)
+  else solve(first, oper, second)
 }
 
 function solve(x, op, y) {
@@ -106,25 +123,35 @@ function solve(x, op, y) {
 }
 
 function setNext(result, op) {
-  contSecond += second;
+  repeatSecond += second;
   second = ''
   oper = ''
   first = result
-  contOp = op;
+  repeatOp = op;
 }
 
-function contEquals (x, op, y) {
-  solve(x, op, y)
+function makeNeg() {
+  if (!first) first += '-'
+  if (oper) second += '-'
+  display.textContent += '-'
 }
 
-function equalBtn() {
-  if (!oper && !contOp) display.textContent = first
-  else if (first && oper && !second) {
-    second = first
-    solve(first, oper, second)
+function backSpace() {
+  let backspaced = ''
+  if (!oper) {
+    backspaced = first.slice(0, -1)
+    display.textContent = backspaced
+    first = backspaced
   }
-  else if (!second) contEquals(first, contOp, contSecond)
-  else solve(first, oper, second)
+  if (oper && !second) {
+    oper = ''
+    display.textContent = first
+  }
+  if (first && oper && second) {
+    backspaced = second.slice(0, -1)
+    display.textContent = backspaced
+    second = backspaced
+  }
 }
 
 function clrCalc() {
@@ -132,6 +159,6 @@ function clrCalc() {
   first = ''
   second = ''
   oper = ''
-  contSecond = ''
-  contOp = ''
+  repeatOp = ''
+  repeatSecond = ''
 }
