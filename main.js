@@ -78,7 +78,7 @@ const equals = document.querySelector('.equals');
 equals.addEventListener('click', () => equalBtn())
 
 function numBtn(num) {
-  if (typeof first === 'number' && (!oper)) clrCalc()
+  if (typeof first === 'number' && !oper) clrCalc()
   if (!oper) first += num;
   else second += num;
 }
