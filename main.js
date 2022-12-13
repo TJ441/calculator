@@ -160,5 +160,5 @@ function clrCalc() {
   second = ''
   oper = ''
   repeatOp = ''
-  repeatSecond = '1'
+  repeatSecond = ''
 }
